@@ -28,7 +28,7 @@ namespace Menu_pizza_poo_v2
             InitializeComponent();
             this.clients = list;
             this.mainWindow = main;
-            this.clients = Client.LectureFichier().ToList();
+            this.clients = list;
         }
 
         private void numtel_GotFocus(object sender, RoutedEventArgs e)
@@ -38,11 +38,12 @@ namespace Menu_pizza_poo_v2
             tb.GotFocus -= numtel_GotFocus;
         }
         int id;
+        bool success = false;
         private void numtel_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                bool success = int.TryParse(numtel.Text, out id);
+                success = int.TryParse(numtel.Text, out id);
                 if (!success)
                 {
                     MessageBox.Show("Veuillez rentrer un numéro de téléphone valide");
@@ -78,7 +79,7 @@ namespace Menu_pizza_poo_v2
 
         private void inscription_Click(object sender, RoutedEventArgs e)
         {
-            if (prenom.Text != null && prenom.Text != "Entrez ici votre prénom" && nom.Text != null && nom.Text != "Entrez ici votre nom" && adresse.Text != null && adresse.Text != "Entrez ici votre adresse")
+            if (prenom.Text != null && prenom.Text != "Entrez ici votre prénom" && nom.Text != null && nom.Text != "Entrez ici votre nom" && adresse.Text != null && adresse.Text != "Entrez ici votre adresse" && success)
             {
                 Client client = new Client(nom.Text, prenom.Text, adresse.Text, id);
                 clients.Add(client);

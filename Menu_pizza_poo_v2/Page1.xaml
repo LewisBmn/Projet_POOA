@@ -192,6 +192,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="2" />
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
@@ -298,11 +300,114 @@
                         <TextBlock Text="Grande" Foreground="#332D2D" FontSize="7" TextAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
+                <Rectangle Stroke="Transparent" Width="2" HorizontalAlignment="Center" Fill="#332D2D" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="0,0,0,10">
+                    <StackPanel Orientation="Vertical" Grid.Column="2" >
+                        <Image Source="C:\Users\lewis\source\repos\Menu_pizza_poo_v2\Menu_pizza_poo_v2\bin\Debug\coca.png" Width="90" Height="90" Margin="35,10,0,0"/>
+                        <TextBlock Text="Coca-Cola" Foreground="White" FontSize="11" Margin="35,0,0,0" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" Margin="43,10,0,0">
+                            <Button x:Name="Btn_MoinsCoca" Content="-" Background="Transparent" BorderBrush="#332D2D" Foreground="#EE4037" Width="20"
+                                Style="{DynamicResource ButtonPlusMoinsStyle}" Cursor="Hand" VerticalContentAlignment="Top" Click="Btn_MoinsCoca_Click"/>
+                            <Border BorderThickness="1" BorderBrush="#332D2D">
+                                <TextBlock x:Name="TxCompteurCoca" Text="0" Background="Transparent"  Foreground="White" Width="40" TextAlignment="Center"/>
+                            </Border>
+                            <Button x:Name="Btn_PlusCoca" Content="+" Background="Transparent" BorderBrush="#332D2D" Foreground="#EE4037" Width="20" 
+                                Style="{DynamicResource ButtonPlusMoinsStyle}" Cursor="Hand" VerticalContentAlignment="Top" Click="Btn_PlusCoca_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <RadioButton x:Name="PetitCoca" GroupName="Coca" Background="Transparent" 
+                                     Style="{DynamicResource RadioButtonOrangeStyle}" IsChecked="True" Cursor="Hand" Click="PetitCoca_Click"/>
+                            <TextBlock Text="33cL" Foreground="#332D2D" FontSize="7" TextAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <RadioButton x:Name="MoyenCoca" GroupName="Coca" Background="Transparent" 
+                                     Style="{DynamicResource RadioButtonOrangeStyle}" Cursor="Hand" Click="MoyenCoca_Click" />
+                            <TextBlock Text="50cL" Foreground="#332D2D" FontSize="7" TextAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <RadioButton x:Name="GrandCoca" GroupName="Coca" Background="Transparent" 
+                                     Style="{DynamicResource RadioButtonOrangeStyle}" Cursor="Hand" Click="GrandCoca_Click"/>
+                            <TextBlock Text="1L" Foreground="#332D2D" FontSize="7" TextAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+                <Rectangle Stroke="Transparent" Width="380" Height="2" Fill="#332D2D"/>
+            </StackPanel>
+            <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <StackPanel Orientation="Vertical" Grid.Column="1" >
+                        <Image Source="C:\Users\lewis\source\repos\Menu_pizza_poo_v2\Menu_pizza_poo_v2\bin\Debug\orange.png" Width="90" Height="90" Margin="35,10,0,0"/>
+                        <TextBlock Text="Jus d'orange" Foreground="White" FontSize="11" Margin="50,0,0,0"/>
+                        <StackPanel Orientation="Horizontal" Margin="43,10,0,0">
+                            <Button x:Name="Btn_MoinsOrange" Content="-" Background="Transparent" BorderBrush="#332D2D" Foreground="#EE4037" Width="20"
+                                Style="{DynamicResource ButtonPlusMoinsStyle}" Cursor="Hand" VerticalContentAlignment="Top" Click="Btn_MoinsOrange_Click"/>
+                            <Border BorderThickness="1" BorderBrush="#332D2D">
+                                <TextBlock x:Name="TxCompteurOrange" Text="0" Background="Transparent"  Foreground="White" Width="40" TextAlignment="Center"/>
+                            </Border>
+                            <Button x:Name="Btn_PlusOrange" Content="+" Background="Transparent" BorderBrush="#332D2D" Foreground="#EE4037" Width="20" 
+                                Style="{DynamicResource ButtonPlusMoinsStyle}" Cursor="Hand" VerticalContentAlignment="Top" Click="Btn_PlusOrange_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,0,25,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <RadioButton x:Name="PetitOrange" GroupName="Orange" Background="Transparent" 
+                                     Style="{DynamicResource RadioButtonOrangeStyle}" IsChecked="True" Cursor="Hand" Click="PetitOrange_Click"/>
+                            <TextBlock Text="33cL" Foreground="#332D2D" FontSize="7" TextAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <RadioButton x:Name="MoyenOrange" GroupName="Orange" Background="Transparent" 
+                                     Style="{DynamicResource RadioButtonOrangeStyle}" Cursor="Hand" Click="MoyenOrange_Click"/>
+                            <TextBlock Text="50cL" Foreground="#332D2D" FontSize="7" TextAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <RadioButton x:Name="GrandOrange" GroupName="Orange" Background="Transparent" 
+                                     Style="{DynamicResource RadioButtonOrangeStyle}" Cursor="Hand" Click="GrandOrange_Click"/>
+                            <TextBlock Text="1L" Foreground="#332D2D" FontSize="7" TextAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Rectangle Stroke="Transparent" Width="2" HorizontalAlignment="Center" Fill="#332D2D" Margin="10,0,0,0"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="0,0,0,10">
+                        <StackPanel Orientation="Vertical" Grid.Column="2" >
+                            <Image Source="C:\Users\lewis\source\repos\Menu_pizza_poo_v2\Menu_pizza_poo_v2\bin\Debug\tea.png" Width="100" Height="100" Margin="35,0,0,0"/>
+                            <TextBlock Text="Ice-Tea" Foreground="White" FontSize="11" Margin="35,0,0,0" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" Margin="43,10,0,0">
+                                <Button x:Name="Btn_MoinsIceTea" Content="-" Background="Transparent" BorderBrush="#332D2D" Foreground="#EE4037" Width="20"
+                                Style="{DynamicResource ButtonPlusMoinsStyle}" Cursor="Hand" VerticalContentAlignment="Top" Click="Btn_MoinsIceTea_Click"/>
+                                <Border BorderThickness="1" BorderBrush="#332D2D">
+                                    <TextBlock x:Name="TxCompteurIceTea" Text="0" Background="Transparent"  Foreground="White" Width="40" TextAlignment="Center"/>
+                                </Border>
+                                <Button x:Name="Btn_PlusIceTea" Content="+" Background="Transparent" BorderBrush="#332D2D" Foreground="#EE4037" Width="20" 
+                                Style="{DynamicResource ButtonPlusMoinsStyle}" Cursor="Hand" VerticalContentAlignment="Top" Click="Btn_PlusIceTea_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                                <RadioButton x:Name="PetitIceTea" GroupName="IceTea" Background="Transparent" 
+                                     Style="{DynamicResource RadioButtonOrangeStyle}" IsChecked="True" Cursor="Hand" Click="PetitIceTea_Click"/>
+                                <TextBlock Text="33cL" Foreground="#332D2D" FontSize="7" TextAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                                <RadioButton x:Name="MoyenIceTea" GroupName="IceTea" Background="Transparent" 
+                                     Style="{DynamicResource RadioButtonOrangeStyle}" Cursor="Hand" Click="MoyenIceTea_Click" />
+                                <TextBlock Text="50cL" Foreground="#332D2D" FontSize="7" TextAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                                <RadioButton x:Name="GrandIceTea" GroupName="IceTea" Background="Transparent" 
+                                     Style="{DynamicResource RadioButtonOrangeStyle}" Cursor="Hand" Click="GrandIceTea_Click"/>
+                                <TextBlock Text="1L" Foreground="#332D2D" FontSize="7" TextAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
-        <Button x:Name="Btn_Commander" Content="Commander" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" 
+        <Button x:Name="Btn_Commander" Content="Commander" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="7" 
                 Background="#EE4037" Foreground="White" Cursor="Hand" FontFamily="Arial" FontSize="15" BorderBrush="#EE4037" Click="Btn_Commander_Click" Style="{DynamicResource ButtonCommanderStyle}" />
-        <TextBlock x:Name="PrixCount" Grid.Row="5" Grid.Column="2" Text="0€" HorizontalAlignment="Right"
+        <TextBlock x:Name="PrixCount" Grid.Row="7" Grid.Column="2" Text="0€" HorizontalAlignment="Right"
                    VerticalAlignment="Center" FontFamily="Arial" FontSize="15" Foreground="White" Background="Transparent"/>
     </Grid>
 </Page>

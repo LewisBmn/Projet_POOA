@@ -30,6 +30,7 @@ namespace Menu_pizza_poo_v2
             this.clients = list;
             VoirCommandes.Content = "    Voir les\ncommandes\n    actives";
             VoirCommandesClient.Content = "    Voir les\ncommandes\n  d'un client";
+            NumCommande.Content = "   Voir une\ncommande \navec son n°";
         }
 
         private void Commander_Click(object sender, RoutedEventArgs e)
@@ -45,6 +46,11 @@ namespace Menu_pizza_poo_v2
         private void VoirCommandesClient_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.ConnexionCommandeClient();
+        }
+
+        private void NumCommande_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.RechCommande();
         }
     }
 }

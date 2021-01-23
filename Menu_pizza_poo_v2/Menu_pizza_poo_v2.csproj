@@ -55,22 +55,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AffichageEmployes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AffichageEmployes.xaml.cs">
+      <DependentUpon>AffichageEmployes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Boissons.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Commande.cs" />
     <Compile Include="Commis.cs" />
+    <Compile Include="Livreur.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Page1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageAffichageClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -86,6 +99,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageEffectif.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageEffectifClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageEffectifEmployés.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageInscription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageRechCommande.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageResumeCommandes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +128,9 @@
     <Compile Include="Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageAffichageClient.xaml.cs">
+      <DependentUpon>PageAffichageClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageCommande.xaml.cs">
       <DependentUpon>PageCommande.xaml</DependentUpon>
     </Compile>
@@ -103,6 +139,21 @@
     </Compile>
     <Compile Include="PageConnexionCommandesClient.xaml.cs">
       <DependentUpon>PageConnexionCommandesClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageEffectif.xaml.cs">
+      <DependentUpon>PageEffectif.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageEffectifClient.xaml.cs">
+      <DependentUpon>PageEffectifClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageEffectifEmployés.xaml.cs">
+      <DependentUpon>PageEffectifEmployés.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageInscription.xaml.cs">
+      <DependentUpon>PageInscription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageRechCommande.xaml.cs">
+      <DependentUpon>PageRechCommande.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageResumeCommandes.xaml.cs">
       <DependentUpon>PageResumeCommandes.xaml</DependentUpon>

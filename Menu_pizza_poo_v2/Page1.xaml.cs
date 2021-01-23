@@ -24,6 +24,14 @@ namespace Menu_pizza_poo_v2
         int compteurChor = 0;
         int compteurVege = 0;
 
+        int compteurCoca = 0;
+        int compteurJus = 0;
+        int compteurIceTea = 0;
+
+        int compteurPrixCoca = 0;
+        int compteurPrixJus = 0;
+        int compteurPrixIceTea = 0;
+
         int compteurPrixFrom = 0;
         int compteurPrixChor = 0;
         int compteurPrixVege = 0;
@@ -40,14 +48,29 @@ namespace Menu_pizza_poo_v2
         int moyenneChor = 22;
         int petiteChor = 18;
 
-        public Page1(MainWindow mainWindow, Client cl)
+        int coca33cl = 5;
+        int coca50cl = 7;
+        int coca1l = 10;
+
+        int jus33cl = 6;
+        int jus50cl = 9;
+        int jus1l = 12;
+
+        int icetea33cl = 4;
+        int icetea50cl = 6;
+        int icetea1l = 8;
+
+
+        public Page1(MainWindow mainWindow, Client cl, List<Livreur> livr)
         {
             InitializeComponent();
             main = mainWindow;
             this.client = cl;
+            this.livreurs = livr;
         }
         private MainWindow main;
         private Client client;
+        private List<Livreur> livreurs;
         private void Btn_MoinsFrom_Click(object sender, RoutedEventArgs e)
         {
             if (compteurFrom > 0)
@@ -191,11 +214,180 @@ namespace Menu_pizza_poo_v2
                 for (int j = compteurFrom; j < compteurFrom + compteurChor; j++) { pizzas[j] = pizzaChor; }
                 for (int k = compteurFrom + compteurChor; k < compteurFrom + compteurChor + compteurVege; k++) { pizzas[k] = pizzaVege; }
             }
+            List<Boissons> boissons = new List<Boissons> { };
+            if (compteurCoca > 0 || compteurJus > 0 || compteurIceTea > 0)
+            {
+                Boissons coca = new Boissons();
+                Boissons jusorange = new Boissons();
+                Boissons icetea = new Boissons();
+                if (PetitCoca.IsChecked == true) { coca = new Boissons("Coca", 33, coca33cl); }
+                if (MoyenCoca.IsChecked == true) { coca = new Boissons("Coca", 50, coca50cl); }
+                if (GrandCoca.IsChecked == true) { coca = new Boissons("Coca", 100, coca1l); }
 
-            Commande commande = new Commande(pizzas, compteurPrixFrom + compteurPrixChor + compteurPrixVege, this.client.NumTel);
-            this.client.Commandes.Add(commande);
-            this.client.AchatsCumulés += commande.Prix;
-            main.GoBackToStartPageCommander(commande);
+                if (PetitOrange.IsChecked == true) { jusorange = new Boissons("Jus d'orange", 33, jus33cl); }
+                if (MoyenOrange.IsChecked == true) { jusorange = new Boissons("Jus d'orange", 50, jus50cl); }
+                if (GrandOrange.IsChecked == true) { jusorange = new Boissons("Jus d'orange", 100, jus1l); }
+
+                if (PetitIceTea.IsChecked == true) { icetea = new Boissons("Ice Tea", 33, icetea33cl); }
+                if (MoyenIceTea.IsChecked == true) { icetea = new Boissons("Ice Tea", 50, icetea50cl); }
+                if (GrandIceTea.IsChecked == true) { icetea = new Boissons("Ice Tea", 100, icetea1l); }
+
+                for (int i = 0; i < compteurCoca; i++) { boissons.Add(coca); }
+                for (int j = compteurCoca; j < compteurCoca + compteurJus; j++) { boissons.Add(jusorange); }
+                for (int k = compteurCoca + compteurJus; k < compteurCoca + compteurJus + compteurIceTea; k++) { boissons.Add(icetea); }
+            }
+            bool dispo = false;
+            foreach (Livreur livreur in livreurs)
+            {
+                if (livreur.Etat == "Sur place" || livreur.Etat == "surplace")
+                {
+                    dispo = true;
+                }
+            }
+            bool pizzaobli = false;
+            if (compteurFrom + compteurChor + compteurVege > 0) { pizzaobli = true; }
+            if (dispo == true && pizzaobli == true)
+            {
+                Commande commande = new Commande(pizzas, compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea, this.client.NumTel, boissons);
+
+                this.client.Commandes.Add(commande);
+                this.client.AchatsCumulés += commande.Prix;
+                main.GoBackToStartPageCommander(commande);
+            }
+            else
+            {
+                if (dispo == false)
+                {
+                    MessageBox.Show("Navré, aucun livreur n'est pour l'instant disponible : ajoutez un nouveau livreur, où attendez qu'un livreur finisse sa livraison !");
+                }
+                if(pizzaobli == false)
+                {
+                    MessageBox.Show("Une commande doit comporter au moins une pizza");
+                }
+            }
+        }
+
+        private void Btn_MoinsCoca_Click(object sender, RoutedEventArgs e)
+        {
+            if (compteurCoca > 0)
+            {
+                compteurCoca--;
+                TxCompteurCoca.Text = compteurCoca.ToString();
+                if (GrandCoca.IsChecked == true) { compteurPrixCoca = compteurCoca * coca1l; }
+                if (MoyenCoca.IsChecked == true) { compteurPrixCoca = compteurCoca * coca50cl; }
+                if (PetitCoca.IsChecked == true) { compteurPrixCoca = compteurCoca * coca33cl; }
+                PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+            }
+        }
+
+        private void Btn_PlusCoca_Click(object sender, RoutedEventArgs e)
+        {
+            compteurCoca++;
+            TxCompteurCoca.Text = compteurCoca.ToString();
+            if (GrandCoca.IsChecked == true) { compteurPrixCoca = compteurCoca * coca1l; }
+            if (MoyenCoca.IsChecked == true) { compteurPrixCoca = compteurCoca * coca50cl; }
+            if (PetitCoca.IsChecked == true) { compteurPrixCoca = compteurCoca * coca33cl; }
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void PetitCoca_Click(object sender, RoutedEventArgs e)
+        {
+            compteurPrixCoca = compteurCoca * coca33cl;
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void MoyenCoca_Click(object sender, RoutedEventArgs e)
+        {
+            compteurPrixCoca = compteurCoca * coca50cl;
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void GrandCoca_Click(object sender, RoutedEventArgs e)
+        {
+            compteurPrixCoca = compteurCoca * coca1l;
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void Btn_MoinsOrange_Click(object sender, RoutedEventArgs e)
+        {
+            if (compteurJus > 0)
+            {
+                compteurJus--;
+                TxCompteurOrange.Text = compteurJus.ToString();
+                if (GrandOrange.IsChecked == true) { compteurPrixJus = compteurJus * jus1l; }
+                if (MoyenOrange.IsChecked == true) { compteurPrixJus = compteurJus * jus50cl; }
+                if (PetitOrange.IsChecked == true) { compteurPrixJus = compteurJus * jus33cl; }
+                PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+            }
+        }
+
+        private void Btn_PlusOrange_Click(object sender, RoutedEventArgs e)
+        {
+            compteurJus++;
+            TxCompteurOrange.Text = compteurJus.ToString();
+            if (GrandOrange.IsChecked == true) { compteurPrixJus = compteurJus * jus1l; }
+            if (MoyenOrange.IsChecked == true) { compteurPrixJus = compteurJus * jus50cl; }
+            if (PetitOrange.IsChecked == true) { compteurPrixJus = compteurJus * jus33cl; }
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void PetitOrange_Click(object sender, RoutedEventArgs e)
+        {
+            compteurPrixJus = compteurJus * jus33cl;
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void MoyenOrange_Click(object sender, RoutedEventArgs e)
+        {
+            compteurPrixJus = compteurJus * jus50cl;
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void GrandOrange_Click(object sender, RoutedEventArgs e)
+        {
+            compteurPrixJus = compteurJus * jus1l;
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void Btn_MoinsIceTea_Click(object sender, RoutedEventArgs e)
+        {
+            if (compteurIceTea > 0)
+            {
+                compteurIceTea--;
+                TxCompteurIceTea.Text = compteurIceTea.ToString();
+                if (GrandIceTea.IsChecked == true) { compteurPrixIceTea = compteurIceTea * icetea1l; }
+                if (MoyenIceTea.IsChecked == true) { compteurPrixIceTea = compteurIceTea * icetea50cl; }
+                if (PetitIceTea.IsChecked == true) { compteurPrixIceTea = compteurIceTea * icetea33cl; }
+                PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+            }
+        }
+
+        private void Btn_PlusIceTea_Click(object sender, RoutedEventArgs e)
+        {
+            compteurIceTea++;
+            TxCompteurIceTea.Text = compteurIceTea.ToString();
+            if (GrandIceTea.IsChecked == true) { compteurPrixIceTea = compteurIceTea * icetea1l; }
+            if (MoyenIceTea.IsChecked == true) { compteurPrixIceTea = compteurIceTea * icetea50cl; }
+            if (PetitIceTea.IsChecked == true) { compteurPrixIceTea = compteurIceTea * icetea33cl; }
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void PetitIceTea_Click(object sender, RoutedEventArgs e)
+        {
+            compteurPrixIceTea = compteurIceTea * icetea33cl;
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void MoyenIceTea_Click(object sender, RoutedEventArgs e)
+        {
+            compteurPrixIceTea = compteurIceTea * icetea50cl;
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
+        }
+
+        private void GrandIceTea_Click(object sender, RoutedEventArgs e)
+        {
+            compteurPrixIceTea = compteurIceTea * icetea1l;
+            PrixCount.Text = (compteurPrixFrom + compteurPrixChor + compteurPrixVege + compteurPrixCoca + compteurPrixJus + compteurPrixIceTea).ToString() + "€";
         }
     }
 }
